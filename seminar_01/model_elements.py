@@ -37,13 +37,20 @@ class Camera:
 
 # Класс Scene представляет собой 3D-сцену
 class Scene:
-   def __init__(self, id, models, flashes):
-       # id - это уникальный идентификатор сцены
+    # id - это уникальный идентификатор сцены
        # models - это список полигональных моделей, которые находятся на сцене
        # flashes - это список вспышек, которые находятся на сцене
-       self.id = id
-       self.models = models
-       self.flashes = flashes
+    def init(self, id, models, flashes, cameras):
+       self.ID = id
+       if len(models) > 0:
+           self.Models = models
+       else:
+           raise Exception("Должна быть одна модель")
+       self.Flashes = flashes
+       if len(cameras) > 0:
+           self.cameras = cameras
+       else:
+           raise Exception("Должна быть одна камера")
 
    # Метод method1 - это пример метода, который может быть определен в классе Scene
    def method1(self, type1)->Type:
@@ -68,9 +75,8 @@ class Poligon:
 # Класс PoligonalModel представляет собой полигональную модель
 class PoligonalModel:
    # Метод __init__ инициализирует экземпляр класса
-   def __init__(self, textures, poligons):
-       self.textures = textures       # textures - это список текстур, которые будут применены к полигонам
-       self.poligons = [self.poligon]       # poligons - это список полигонов, которые составляют модель
-       self.poligon = Poligon(points)       # poligon - это полигон, который добавляется в список полигонов
-
+   def init(self, textures):
+       self.poligons = []  # poligon - это полигон, который добавляется в список полигонов
+       self.textures = textures  # textures - это список текстур, которые будут применены к полигонам
+       self.poligons.append(Poligon(Point3D()))  # poligons - это список полигонов, которые составляют модель
 
